@@ -1,0 +1,43 @@
+#gameBody {
+    background: url("../images/chase-kinney-801570-unsplash.jpg") no-repeat;
+    background-size: cover;
+}
+
+#gameContainer {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.card-body {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.jumbotron {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#memeImg {
+    width: 200px;
+    margin: 0 auto;
+    display: none;
+}
+
+button {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: skyblue;
+}
+
+.main-question {
+    margin: 20px 0;
+}
