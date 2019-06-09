@@ -81,43 +81,42 @@
                     $("#question").text(questions[i]);
                     
                     // display answers
-                    for (var i = 0; i < q1Choices.length; i++) {
+                    for (var x = 0; x < q1Choices.length; x++) {
                         var button = $("<button>");
-                        button.text(q1Choices[i]);
-                        button.val(q1Choices[i]);
+                        button.text(q1Choices[x]);
+                        button.val(q1Choices[x]);
                         $("#answers").append(button);
-                        // console.log(q1Choices[i]);
                     }
                     
                     // Check Answer function (check if answer is right or wrong)
                         // if answer is correct, display CORRECT!
                         $("button").on("click",(function(){
                             var choice = $(this).val();
-                            
+                            var q1Answer = correctAnswers[0];
+
                             if (choice === correctAnswers[0]) {
-                                alert(correctAnswers[i]);
+                                alert(choice);
                                 // display correct message
                                 // add 1 point to #correctanswer
                                 // call next question
                                 // reset timer
-                            } else {
+                            } else if ( choice !== correctAnswers[0]) {
                                 alert("STOOPID!");
-                            }
-    
-                            // if answer is wrong, display YOU SUCK!
                                 // display you suck message
                                 // add 1 point to #wronganswer
                                 // call next question
                                 // reset timer
-    
-                            // if no answer is chosen, display TIME'S UP!
+
+                            } else {
                                 // display you time's up message
                                 // add 1 point to #unaswered
                                 // call next question
                                 // reset timer
+
+                            }
+
                             
                         }));
-
 
 
                     // $("#answers").html("<button>" + q1Choices[i]);
