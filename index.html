@@ -34,16 +34,26 @@
         </div>
 
         <div id="triviaQuestion" class="card-body text-center mt-2" style="display: none;">
-          <h2 class="text-danger">Time Left: <div id="timer" class="text-danger">30</div></h2>
-          <!-- <h2 id="question" class="main-question font-weight-normal">Question #1: What color is the sky?</h2> -->
+          <h2 class="text-danger">Time Left: <div id="timer" class="text-danger">10</h2>
           <h2 id="question"></h2>
           <hr class="my-4">
           <div id="answers"></div>
-          <!-- <button id="question-1" value="1">Blue</button>
-            <button id="question-2" value="2">Green</button>
-            <button id="question-3" value="3">Red</button>
-            <button id="question-4" value="4">Dark Blue</button> -->
-          </div>
+        </div>
+
+        <div id="answer" class="card-body text-center mt-2">
+            <h2 id="rightAnswerMessage" class="text-danger" style="display: none;">You Are Correct!</h2>
+            <h2 id="wrongAnswerMessage" class="text-danger" style="display: none;">You Suck!</h2>
+            <h2 id="outOfTimeMessage" class="text-danger" style="display: none;">You're Out of Time!</h2>
+        </div>
+
+        <div id="resultsPage" class="card-body text-center mt-2" style="display: none;">
+            <h2 class="text-danger">Time Left: <div id="timer" class="text-danger">0</h2>
+            <h2>All done, here's how you did!</h2>
+            <hr class="my-4">
+            <h2>Correct Answers: <div id="correctAnswers">0</div>
+            <h2>Incorrect Answers: <div id="incorrectAnswers">0</div>
+            <h2>Unanswered: <div id="unanswered">0</div>
+        </div>
 
       </div>
     </div>
