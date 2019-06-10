@@ -45,7 +45,7 @@ var q5Choices = ["300", "365", "395", "420"];
 
 // Functions
 
-// Timer function
+// Countdown Timer function
 function setTimer() {
     intervalId = setInterval(decrement, 1000);
     timer = 10;
@@ -75,102 +75,123 @@ function setTimer() {
             }, 3000);
         }
     }
+}
 
+// resetTimer function
+function resetTimer() {
+    timer = 10;
+    $("#timer").text(timer);
 }
 
 // The Game (calling functions)
 
+function callQuestion2() {
+    // display question 2
+    $("#triviaQuestion").fadeIn();
+    $("#question").text(questions[1]);
+
+    // display answers for question 2
+    for (var i = 0; i < q1Choices.length; i++) {
+        var button = $("<button>");
+        button.text(q1Choices[i]);
+        button.val(q1Choices[i]);
+        $("#answers").append(button);
+    }
+
+    // on button click
+    $("button").on("click", (function () {
+        var choice = $(this).val();
+        // if answer is true, false, or time is up
+        if (choice === correctAnswers[1]) {
+            // display correct message
+            $("#triviaQuestion").hide();
+            $("#rightAnswerMessage").fadeIn();
+            // add 1 point to #correctanswer
+            correctAnswers++;
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#rightAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+            }, 3000);
+        } else {
+            // display you suck message
+            $("#triviaQuestion").hide();
+            $("#wrongAnswerMessage").fadeIn();
+            // add 1 point to #wronganswer
+            incorrectAnswers++;
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#wrongAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+            }, 3000);
+        }
+    }));
+}
+
+function callQuestion1() {
+    // display question 1
+    $("#triviaQuestion").fadeIn();
+    $("#question").text(questions[0]);
+
+    // display answers for question 1
+    for (var i = 0; i < q1Choices.length; i++) {
+        var button = $("<button>");
+        button.text(q1Choices[i]);
+        button.val(q1Choices[i]);
+        $("#answers").append(button);
+    }
+    setTimer();
+
+    // on button click
+    $("button").on("click", (function () {
+        var choice = $(this).val();
+        // if answer is true, false, or time is up
+        if (choice === correctAnswers[0]) {
+            // display correct message
+            $("#triviaQuestion").hide();
+            $("#rightAnswerMessage").fadeIn();
+            // add 1 point to #correctanswer
+            correctAnswers++;
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#rightAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion2();
+            }, 3000);
+        } else {
+            // display you suck message
+            $("#triviaQuestion").hide();
+            $("#wrongAnswerMessage").fadeIn();
+            // add 1 point to #wronganswer
+            incorrectAnswers++;
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#wrongAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion2();
+            }, 3000);
+        }
+    }));
+}
+
 // Enter Game function
-function Game() {
+function game() {
     $("#play").click(function () {
         $("#instructions").hide();
-        $("#triviaQuestion").fadeIn();
 
-        // display question 1
-        $("#question").text(questions[0]);
-
-        // display answers for question 1
-        for (var i = 0; i < q1Choices.length; i++) {
-            var button = $("<button>");
-            button.text(q1Choices[i]);
-            button.val(q1Choices[i]);
-            $("#answers").append(button);
-        }
-
-        setTimer();
-
-        // Check Answer function (check if answer is right or wrong)
-        // if answer is correct, display CORRECT!
-        $("button").on("click", (function () {
-            var choice = $(this).val();
-
-            // Question 1
-            if (choice === correctAnswers[0]) {
-                
-                // display correct message
-                $("#triviaQuestion").hide();
-                $("#rightAnswerMessage").fadeIn();
-
-                // add 1 point to #correctanswer
-                correctAnswers++;
-
-                // call question 2
-                setTimeout(function () {
-                    $("#triviaQuestion").fadeIn();
-                    $("#question").text(questions[1]);
-                    $("#rightAnswerMessage").hide();
-                    $("#answers").empty();
-
-                    // display answers for question 1
-                    for (var i = 0; i < q2Choices.length; i++) {
-                        var button = $("<button>");
-                        button.text(q2Choices[i]);
-                        button.val(q2Choices[i]);
-                        $("#answers").append(button);
-                    }
-                }, 3000);
-
-                // reset timer
-                
-
-            } else  {
-                // display you suck message
-                $("#triviaQuestion").hide();
-                $("#wrongAnswerMessage").fadeIn();
-
-                // add 1 point to #wronganswer
-                incorrectAnswers++;
-
-                // call question 2
-                setTimeout(function () {
-                    $("#triviaQuestion").fadeIn();
-                    $("#question").text(questions[1]);
-                    $("#wrongAnswerMessage").hide();
-                    $("#answers").empty();
-
-                    // display answers for question 1
-                    for (var i = 0; i < q2Choices.length; i++) {
-                        var button = $("<button>");
-                        button.text(q2Choices[i]);
-                        button.val(q2Choices[i]);
-                        $("#answers").append(button);
-                    }
-                }, 3000);
-
-                // reset timer
-                
-            } 
-        }));
-
-        // if (timer === 0) {
-        //     $("#question").text(questions[1]);
-
-        //     // reset timer
-        //     timer = 10;
-        // }
+        callQuestion1();
     });
 }
 
-
 // click button to start & first question begins with timer
-Game();
+game();
