@@ -26,6 +26,9 @@
 
 var timer;
 var intervalId;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
+var unanswered = 0;
 
 var questions = ["What color is the sky?",
     "How many sides to a dice?",
@@ -67,6 +70,7 @@ function setTimer() {
 
             // add 1 point to #unanswered
             unanswered++;
+            $("#unanswered").text(unanswered);
 
             // call next question
             setTimeout(function () {
@@ -109,6 +113,7 @@ function callQuestion1() {
             $("#rightAnswerMessage").fadeIn();
             // add 1 point to #correctanswer
             correctAnswers++;
+            $("#correctAnswers").text(correctAnswers);
             // reset timer & call next question
             setTimeout(function () {
                 $("#rightAnswerMessage").hide();
@@ -124,6 +129,7 @@ function callQuestion1() {
             $("#wrongAnswerMessage").fadeIn();
             // add 1 point to #wronganswer
             incorrectAnswers++;
+            $("#incorrectAnswers").text(incorrectAnswers);
             // reset timer & call next question
             setTimeout(function () {
                 $("#wrongAnswerMessage").hide();
@@ -161,6 +167,7 @@ function callQuestion2() {
             $("#rightAnswerMessage").fadeIn();
             // add 1 point to #correctanswer
             correctAnswers++;
+            $("#correctAnswers").text(correctAnswers);
             // reset timer & call next question
             setTimeout(function () {
                 $("#rightAnswerMessage").hide();
@@ -168,7 +175,7 @@ function callQuestion2() {
                 // reset timer
                 resetTimer();
                 // call next question
-                // callQuestion2();
+                callQuestion3();
             }, 3000);
         } else {
             // display you suck message
@@ -176,6 +183,7 @@ function callQuestion2() {
             $("#wrongAnswerMessage").fadeIn();
             // add 1 point to #wronganswer
             incorrectAnswers++;
+            $("#incorrectAnswers").text(incorrectAnswers);
             // reset timer & call next question
             setTimeout(function () {
                 $("#wrongAnswerMessage").hide();
@@ -183,10 +191,173 @@ function callQuestion2() {
                 // reset timer
                 resetTimer();
                 // call next question
-                // callQuestion2();
+                callQuestion3();
             }, 3000);
         }
     }));
+}
+
+function callQuestion3() {
+    // display question 3
+    $("#triviaQuestion").fadeIn();
+    $("#question").text(questions[2]);
+
+    // display answers for question 3
+    for (var i = 0; i < q3Choices.length; i++) {
+        var button = $("<button>");
+        button.text(q3Choices[i]);
+        button.val(q3Choices[i]);
+        $("#answers").append(button);
+    }
+
+    // on button click
+    $("button").on("click", (function () {
+        var choice = $(this).val();
+        console.log(choice);
+        // if answer is true, false, or time is up
+        if (choice === answers[2]) {
+            // display correct message
+            $("#triviaQuestion").hide();
+            $("#rightAnswerMessage").fadeIn();
+            // add 1 point to #correctanswer
+            correctAnswers++;
+            $("#correctAnswers").text(correctAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#rightAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion4();
+            }, 3000);
+        } else {
+            // display you suck message
+            $("#triviaQuestion").hide();
+            $("#wrongAnswerMessage").fadeIn();
+            // add 1 point to #wronganswer
+            incorrectAnswers++;
+            $("#incorrectAnswers").text(incorrectAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#wrongAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion4();
+            }, 3000);
+        }
+    }));
+}
+
+function callQuestion4() {
+    // display question 4
+    $("#triviaQuestion").fadeIn();
+    $("#question").text(questions[3]);
+
+    // display answers for question 4
+    for (var i = 0; i < q4Choices.length; i++) {
+        var button = $("<button>");
+        button.text(q4Choices[i]);
+        button.val(q4Choices[i]);
+        $("#answers").append(button);
+    }
+
+    // on button click
+    $("button").on("click", (function () {
+        var choice = $(this).val();
+        console.log(choice);
+        // if answer is true, false, or time is up
+        if (choice === answers[3]) {
+            // display correct message
+            $("#triviaQuestion").hide();
+            $("#rightAnswerMessage").fadeIn();
+            // add 1 point to #correctanswer
+            correctAnswers++;
+            $("#correctAnswers").text(correctAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#rightAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion5();
+            }, 3000);
+        } else {
+            // display you suck message
+            $("#triviaQuestion").hide();
+            $("#wrongAnswerMessage").fadeIn();
+            // add 1 point to #wronganswer
+            incorrectAnswers++;
+            $("#incorrectAnswers").text(incorrectAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#wrongAnswerMessage").hide();
+                $("#answers").empty();
+                // reset timer
+                resetTimer();
+                // call next question
+                callQuestion5();
+            }, 3000);
+        }
+    }));
+}
+
+function callQuestion5() {
+    // display question 5
+    $("#triviaQuestion").fadeIn();
+    $("#question").text(questions[4]);
+
+    // display answers for question 5
+    for (var i = 0; i < q5Choices.length; i++) {
+        var button = $("<button>");
+        button.text(q5Choices[i]);
+        button.val(q5Choices[i]);
+        $("#answers").append(button);
+    }
+
+    // on button click
+    $("button").on("click", (function () {
+        var choice = $(this).val();
+        console.log(choice);
+        // if answer is true, false, or time is up
+        if (choice === answers[4]) {
+            // display correct message
+            $("#triviaQuestion").hide();
+            $("#rightAnswerMessage").fadeIn();
+            // add 1 point to #correctanswer
+            correctAnswers++;
+            $("#correctAnswers").text(correctAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#rightAnswerMessage").hide();
+                $("#answers").empty();
+                // call next question
+                showResults();
+            }, 3000);
+        } else {
+            // display you suck message
+            $("#triviaQuestion").hide();
+            $("#wrongAnswerMessage").fadeIn();
+            // add 1 point to #wronganswer
+            incorrectAnswers++;
+            $("#incorrectAnswers").text(incorrectAnswers);
+            // reset timer & call next question
+            setTimeout(function () {
+                $("#wrongAnswerMessage").hide();
+                $("#answers").empty();
+                // call next question
+                showResults();
+            }, 3000);
+        }
+    }));
+}
+
+function showResults() {
+    // display results
+    $("#resultsPage").fadeIn();    
 }
 
 // Enter Game function
